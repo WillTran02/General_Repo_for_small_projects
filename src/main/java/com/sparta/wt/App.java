@@ -1,6 +1,5 @@
 package com.sparta.wt;
 
-//Written by Will
 public class App {
     public static void main( String[] args ) {
         int timeOfDay = 12;
