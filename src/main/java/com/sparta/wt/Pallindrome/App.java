@@ -9,9 +9,6 @@ public class App {
     static String sentence3 = "This sentence has multiple palindromes: ABBA Racecar level reer raCEcar bob";
     static List<String> palindromeList = new ArrayList<String>() {};
     public static void main(String[] args) {
-//        System.out.println(isPalindrome(word1));
-//        System.out.println(isPalindrome(word2));
-//        System.out.println(new StringBuilder(word1).reverse().toString().equalsIgnoreCase(word1));
         pullPalindromesFromSentenceIntoList(sentence1, palindromeList);
         pullPalindromesFromSentenceIntoList(sentence2, palindromeList);
         pullPalindromesFromSentenceIntoList(sentence3, palindromeList);
@@ -24,7 +21,6 @@ public class App {
         for (String word : ls) {
             if (word.length() == longest) {
                 lsToReturn.add(word);
-//                System.out.println("Palindrome detected: " + word);
             }
         }
         return lsToReturn;
@@ -54,12 +50,6 @@ public class App {
     }
 
     public static boolean isPalindrome(String wordToCheck) {
-//        char[] charArray = wordToCheck.toCharArray();
-//        String wordReversed = "";
-//        for (int i = charArray.length-1; i >= 0; i--) {
-//            wordReversed += charArray[i];
-//        }
-//        return wordToCheck.equalsIgnoreCase(wordReversed);
         if (wordToCheck.length() < 6) return false;
         return new StringBuilder(wordToCheck).reverse().toString().equalsIgnoreCase(wordToCheck);
     }

@@ -9,27 +9,27 @@ import java.util.List;
 
 public class AppTest {
 
-//    @Test
-//    @DisplayName("Check: false for Helicopter")
-//    void trueTest() {
-//        Assertions.assertEquals(false, App.isPalindrome("Elevation"));
-//    }
-//
-//    @Test
-//    @DisplayName("Check: true for Racecar")
-//    void falseTest() {
-//        Assertions.assertEquals(true, App.isPalindrome("Racecar"));
-//    }
+    @Test
+    @DisplayName("Check: false for Helicopter")
+    void trueTest() {
+        Assertions.assertEquals(false, App.isPalindrome("Elevation"));
+    }
+
+    @Test
+    @DisplayName("Check: true for Racecar")
+    void falseTest() {
+        Assertions.assertEquals(true, App.isPalindrome("Racecar"));
+    }
 
     @Test
     @DisplayName("Check: splitting a sentence")
     void findPalindromeTest() {
         String[] array = new String[4];
         array = App.splitSentenceIntoStringArray("This is a sentence");
-        Assertions.assertEquals(true, array[0] != null);
-        Assertions.assertEquals(true, array[1] != null);
-        Assertions.assertEquals(true, array[2] != null);
-        Assertions.assertEquals(true, array[3] != null);
+        Assertions.assertEquals(true, array[0].equals("This"));
+        Assertions.assertEquals(true, array[1].equals("is"));
+        Assertions.assertEquals(true, array[2].equals("a"));
+        Assertions.assertEquals(true, array[3].equals("sentence"));
     }
 
     @Test
