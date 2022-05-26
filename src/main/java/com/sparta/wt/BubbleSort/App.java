@@ -5,24 +5,24 @@ public class App {
     public static void main(String[] args) {
         int[] numbers = {12, 92, 33, 51, 1};
         printArray(numbers);
-        do {
-            bubbleSort(numbers);
-        } while(swapped);
+        bubbleSort(numbers);
         printArray(numbers);
     }
 
     public static void bubbleSort(int[] numbers) {
-        swapped = false;
+        do {
+            swapped = false;
 //        System.out.println("bubbleSort Initialized");
-        for (int i = 1; i < numbers.length; i++) {
-            if (numbers[i-1] > numbers[i]) {
+            for (int i = 1; i < numbers.length; i++) {
+                if (numbers[i - 1] > numbers[i]) {
 //                System.out.println("Swapping " + newNumbers[i-1] + " with " + newNumbers[i]);
-                swapped = true;
-                int temp = numbers[i-1];
-                numbers[i-1] = numbers[i];
-                numbers[i] = temp;
+                    swapped = true;
+                    int temp = numbers[i - 1];
+                    numbers[i - 1] = numbers[i];
+                    numbers[i] = temp;
+                }
             }
-        }
+        } while(swapped);
     }
 
     public static void printArray(int[] numbers) {
