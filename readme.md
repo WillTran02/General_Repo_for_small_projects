@@ -156,9 +156,9 @@ A testing application was also created alongside the palindrome app, and was use
      
     }
 
-<h1>Fibonacci Sequence</h1>
+<h2>Fibonacci Sequence</h2>
 <p>
-For this project we learned about the Test Driven Development approach, and used it to construct a recursive method where we can recreate the Fibonacci Sequence to a specified index.<br>
+For this task we learned about the Test Driven Development approach, and used it to construct a recursive method where we can recreate the Fibonacci Sequence to a specified index.<br>
 Development began by writing the simplest level of tests that we expect the final program to be able to achieve:
 </p>
 
@@ -249,4 +249,86 @@ A later extension to the task added the following requirements:<br>
             array[i] = fibSeqNumber(i);
         }
         return array;
+    }
+
+<h2>Optional - Creating a MergeArray Method</h2>
+<p>
+For this optional task we had to create a method that could intake two separate arrays as parameters (assumed sorted), and return one single array that combined the two in a sorted fashion. For this task, I opted to create the method using the Test Driven Development approach as discussed in the previous section.
+<br>These were the initial tests that were written to begin development:
+</p>
+
+
+    int[] blankArray = new int[0];
+    int[] filledArray = {1, 2, 3};
+
+    @Test
+    @DisplayName("check: entering blank arrays returns a blank array")
+    void checkReturnsSingleArray() {
+        Assertions.assertArrayEquals(blankArray, App.mergeArrays(blankArray, blankArray));
+    }
+    
+    @Test
+    @DisplayName("check: entering one filled and one blank array returns filled array")
+    void checkOneEmptyArray() {
+        Assertions.assertArrayEquals(filledArray, App.mergeArrays(blankArray, filledArray));
+        Assertions.assertArrayEquals(filledArray, App.mergeArrays(filledArray, blankArray));
+    }
+
+
+<p>While the initial method functioned in a simplistic manner to satisfy the current tests:</p>
+
+    public class App {
+        public static int[] mergeArrays(int[] array1, int[] array2) {
+            if (array1.length == 0) return array2;
+            if (array2.length == 0) return array1;
+            return new int[0];
+        }
+    }
+
+<p>Then the next test required a greater amount of logic coding:</p>
+
+    @Test
+    @DisplayName("check: entering two filled arrays returns one merged array")
+    void checkReturnsMergedArray() {
+        Assertions.assertArrayEquals(filledMergedArray, App.mergeArrays(filledArray, filledArray));
+    }
+
+<p>From this point, the majority of the logic behind the method would be created:</p>
+
+    int indexPointer1 = 0;
+    int indexPointer2 = 0;
+    //create an int[] of total length of the two arrays, ready to return
+    int[] merged = new int[(array1.length + array2.length)];
+
+    for (int i = 0; i < merged.length; i++) {
+        //check if both arrays have been completed, if so then stop to avoid ArrayIndexOutOfBoundsExceptions
+        if (indexPointer1 == array1.length && indexPointer2 == array2.length) break;
+        if (indexPointer1 == array1.length) { //check if array1 has finished, if so then use array2 value
+            merged[i] = array2[indexPointer2++];
+        } else if (indexPointer2 == array2.length) { //check if array2 has finished, if so then use array1 value
+            merged[i] = array1[indexPointer1++];
+        } else //if neither array has finished, add the lower of the two values
+        merged[i] = array1[indexPointer1] < array2[indexPointer2] ? array1[indexPointer1++] : array2[indexPointer2++];
+    }
+    return merged;
+
+<p>After that, it was simply a matter of testing for other eventualities:</p>
+
+    @Test
+    @DisplayName("check: entering null returns an empty array")
+    void checkReturnsBlankArrayWhenNull() {
+        Assertions.assertArrayEquals(blankArray, App.mergeArrays(null, null));
+    }
+
+    @Test
+    @DisplayName("check: entering one filled array and null returns the filled array")
+    void checkReturnsOneArrayWhenNull() {
+        Assertions.assertArrayEquals(filledArray, App.mergeArrays(filledArray, null));
+        Assertions.assertArrayEquals(filledArray, App.mergeArrays(null, filledArray));
+    }
+
+    @Test
+    @DisplayName("check: entering two filled arrays of different sizes returns one merged, sorted array")
+    void checkReturnsMergedSortedArray() {
+        Assertions.assertArrayEquals(filledMergedArray2, App.mergeArrays(filledArray, filledArray2));
     }
