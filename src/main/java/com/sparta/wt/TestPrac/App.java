@@ -25,12 +25,11 @@ public class App {
     public static int concatAllDigits(int[] numbers) {
         //- Given an array of integers, convert them to a
         // single int made up of the digits
-        String allDigits = "";
+        StringBuilder allDigits = new StringBuilder();
         for (int num : numbers) {
-            allDigits += num;
+            allDigits.append(num);
         }
-        int allDigitsAsInt = Integer.parseInt(allDigits);
-        return allDigitsAsInt;
+        return Integer.parseInt(allDigits.toString());
     }
 
     public static String removeAllVowelsAndPrintUppercase(String str) {
@@ -53,7 +52,7 @@ public class App {
 
     public static String[] findDuplicateLettersInString(String sentence) {
         //- For a String, create an array of all the duplicate letters
-        List<String> duplicates = new ArrayList<String>();
+        List<String> duplicates = new ArrayList<>();
         sentence = sentence.toLowerCase();
 
         for (int i = 0; i < sentence.length()-1; i++) {
