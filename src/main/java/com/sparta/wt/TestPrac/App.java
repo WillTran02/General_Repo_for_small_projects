@@ -1,12 +1,5 @@
 package com.sparta.wt.TestPrac;
 
-//- Write a method that takes a string and a letter and checks
-// if the string is in that letter
-//- Give a sequence of numbers return the sum of all the numbers
-// divisible by 2 & 3
-//- Given a sentence I would like a count of the all the letters
-// in the sentence
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +9,17 @@ import static com.sparta.wt.BubbleSort.App.bubbleSort;
 public class App {
 
     public static void main(String[] args) {
-        int[] arrayOfInts = {1, 5, 3, 86, 17, 40};
-        System.out.println(concatAllDigits(arrayOfInts));
+        int[] arrayOfInts = {1, 5, 3, 86, 17, 42};
         String sentence = "This sentence contains vowels.";
+
+        System.out.println(concatAllDigits(arrayOfInts));
         System.out.println(removeAllVowelsAndPrintUppercase(sentence));
         System.out.println(findSecondBiggestNumber(arrayOfInts));
         System.out.println(Arrays.toString(findDuplicateLettersInString(sentence)));
-        System.out.println(Arrays.toString(methodFive(sentence)));
+        System.out.println(Arrays.toString(countConsonantsAndVowels(sentence)));
+        System.out.println(checkIfStringContains(sentence, 'z'));
+        System.out.println(sumAllNumbersDivisibleByTwoAndThree(arrayOfInts));
+        System.out.println(countLettersInString(sentence));
     }
 
     public static int concatAllDigits(int[] numbers) {
@@ -78,13 +75,57 @@ public class App {
         return duplicatesAsArray;
     }
 
-    public static int[] methodFive(String sentence) {
+    public static int[] countConsonantsAndVowels(String sentence) {
         //- Create a 2 value array which counts all the
         // consonants and vowels in a string
         int[] consAndVowels = new int[2];
         String[] vowels = {"A", "E", "I", "O", "U"};
+        String[] consonants = {"B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"};
+        sentence = sentence.toUpperCase();
+        for (int i = 0; i < sentence.length(); i++) {
+            for (String letter : vowels) {
+                if (("" + sentence.charAt(i)).equals(letter)) {
+                    consAndVowels[1]++;
+                }
+            }
+            for (String letter : consonants) {
+                if (("" + sentence.charAt(i)).equals(letter)) {
+                    consAndVowels[0]++;
+                }
+            }
+        }
 
 
         return consAndVowels;
     }
+
+    public static boolean checkIfStringContains(String sentence, char letter) {
+        //- Write a method that takes a string and a letter and checks
+        // if the string is in that letter
+        return sentence.contains(""+letter);
+    }
+
+    public static int sumAllNumbersDivisibleByTwoAndThree(int[] numberArray) {
+        //- Give a sequence of numbers return the sum of all the numbers
+        // divisible by 2 & 3
+        int total = 0;
+        for (int number : numberArray) {
+            if (number%2==0 || number%3==0) {
+                total += number;
+            }
+        }
+        return total;
+    }
+
+    public static int countLettersInString(String sentence) {
+        //- Given a sentence I would like a count of the all the letters
+        // in the sentence
+        int total = 0;
+        String[] sentences = sentence.split(" ");
+        for (String word : sentences) {
+            total += word.length();
+        }
+        return total;
+    }
+
 }

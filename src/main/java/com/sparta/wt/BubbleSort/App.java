@@ -3,7 +3,7 @@ package com.sparta.wt.BubbleSort;
 public class App {
     static boolean swapped = false;
     public static void main(String[] args) {
-        int[] numbers = {12, 92, 33, 51, 1};
+        int[] numbers = {12, 92, 33, 51, 1, 4, 36, 35, 59, 20, 32};
         printArray(numbers);
         bubbleSort(numbers);
         printArray(numbers);

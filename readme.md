@@ -78,6 +78,32 @@ bubbleSort works by:
         }
     }
 
+<p>
+Testing for the bubbleSort App was created after the App was finalized, and various conditions were tested from the completed App. This led to the reveal of one condition for the bubbleSort App where the sort failed to fully sort an array of ints:
+</p>
+
+
+    @Test
+    @DisplayName("check: return {-5, -3, -1} when entering {-1, -3, -5}")
+    void checkNegativeSort() {
+        int[] numbers = {-1, -3, -5};
+        App.bubbleSort(numbers);
+        Assertions.assertArrayEquals(new int[]{-5, -3, -1},numbers);
+    }
+
+<p>
+The condition was if an array contained only negative numbers. The sort function would only run a single time, reorganizing some values but then failing to loop and continue sorting the rest of the values.
+<br>The issue was that the looping section of the code was not actually implemented inside the bubbleSort method, but within the main method. The solution was simply to move the do-while loop statements inside the bubbleSort method directly.
+</p>
+
+
+    public static void bubbleSort(int[] numbers) {
+        do {
+        ...
+        } while(swapped);
+    }
+
+
 <h2>Creating a Palindrome Checker</h2>
 <p>
 The purpose of this App was to be able to:
