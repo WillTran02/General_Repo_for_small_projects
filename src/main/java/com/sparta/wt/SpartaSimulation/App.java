@@ -39,4 +39,5 @@ public class App {
     // System.out.println(fullCentres)
     // System.out.println(trainingTrainees)
     // System.out.println(waitingTrainees)
+    
 }
